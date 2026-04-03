@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class BidTransaction {
@@ -7,7 +6,7 @@ public class BidTransaction {
     private LocalDateTime timestamp;
     private Bidder bidder;
 
-    public BidTransaction(String transactionId, double amount, LocalDate timestamp, Bidder bidder) {
+    public BidTransaction(String transactionId, double amount, LocalDateTime timestamp, Bidder bidder) {
         this.transactionId = transactionId;
         this.amount = amount;
         this.timestamp = timestamp;
@@ -22,7 +21,7 @@ public class BidTransaction {
         return amount;
     }
 
-    public LocalDate getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
