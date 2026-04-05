@@ -1,8 +1,18 @@
 public class Seller extends User {
-    public Seller(String id, String username, String email) {
+    private double startingPrice;
+    private String itemName;
+    public Seller(String id, String username, String email, String itemName, double startingPrice) {
         super(id, username, email);
+        this.startingPrice = startingPrice;
+        this.itemName = itemName;
     }
     public void performAction() {
-        System.out.println("Seller đang đăng tải một món đồ lên hệ thống để bắt đầu đấu giá.");
+        System.out.println("Người bán:" + getUsername() + " đang tạo phiên đấu giá cho" + getItemName() + " với giá khởi điểm:" + startingPrice);
     }
-}
+    public double getStartingPrice() {
+        return startingPrice;
+    }
+    public String getItemName() {
+        return itemName;
+    }
+
