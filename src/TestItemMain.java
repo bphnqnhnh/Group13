@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class TestMain {
+public class TestItemMain {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println(" -- THÊM ĐỒ ĐIỆN TỬ -- ");
