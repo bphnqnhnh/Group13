@@ -1,22 +1,16 @@
 public abstract class User extends Entity {
-    private String username;
     private String email;
-    public User(String id, String username, String email) {
-        super(id);
-        this.username = username;
+    private String password;
+    public User(String id, String name, String email, String password) {
+        super(id, name);
         this.email = email;
-    }
-    public String getUsername() {
-        return username;
+        this.pasword = password;
     }
     public String getEmail() {
         return email;
     }
-    public void login() {
-        System.out.println(username + " đã đăng nhập vào hệ thống.");
-    }
-    public void logout() {
-        System.out.println(username + " đã đăng xuất.");
+    public String getPassWord() {
+        return password;
     }
     public abstract void performAction();
 }
