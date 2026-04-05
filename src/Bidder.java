@@ -1,8 +1,10 @@
 public class Bidder extends User {
     private double bidAmount;
+    private String itemName;
     public Bidder(String id, String username, String email, String itemName, double bidAmount) {
-        super(id, username, email, itemName);
+        super(id, username, email);
         this.bidAmount = bidAmount;
+        this.itemName = itemName;
     }
 
     public void performAction() {
@@ -10,4 +12,7 @@ public class Bidder extends User {
     }
     public double getBidAmount() {
         return bidAmount;
+    }
+    public void String getItemName() {
+        return itemName;
     }
