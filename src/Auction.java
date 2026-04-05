@@ -5,19 +5,27 @@ import java.util.UUID;
 
 public class Auction {
     private String auctionId;
+    private Item item;
     private double currentPrice;
     private AuctionStatus status;
     private List<BidTransaction> bidHistory;
+    private Seller seller;
 
-    public Auction(String auctionId, double currentPrice, AuctionStatus status) {
+    public Auction(String auctionId, Item item, double currentPrice, AuctionStatus status, Seller seller) {
         this.auctionId = auctionId;
+        this.item = item;
         this.currentPrice = currentPrice;
         this.status = status;
+        this.seller = seller;
         this.bidHistory = new ArrayList<>();
     }
 
     public String getAuctionId() {
         return auctionId;
+    }
+
+    public Item getItem() {
+        return item;
     }
 
     public double getCurrentPrice() {
@@ -32,16 +40,18 @@ public class Auction {
         return bidHistory;
     }
 
+    public Seller getSeller() {
+        return seller;
+    }
+
     public void startAuction() {
         if (this.status == AuctionStatus.OPEN) {
             this.status = AuctionStatus.RUNNING;
-            System.out.println("Phiên đấu giá " + this.auctionId + " đã chính thức bắt đầu!");
+            System.out.println("Phiên đấu giá " + this.auctionId + " cho sản phẩm '" + item.getName() + "' đã chính thức bắt đầu!");
         }
-
         else {
             System.out.println("Thất bại: Không thể bắt đầu vì phiên đấu giá đang ở trạng thái " + this.status);
         }
-
     }
 
     public boolean placeBid(Bidder bidder, double bidAmount) {
@@ -56,11 +66,46 @@ public class Auction {
         }
 
         this.currentPrice = bidAmount;
-        String newTxnId = "TXH-" + UUID.randomUUID().toString().substring(0, 8);
+        String newTxnId = "TXN-" + UUID.randomUUID().toString().substring(0, 8);
         BidTransaction newTransaction = new BidTransaction(newTxnId, bidAmount, LocalDateTime.now(), bidder);
 
         this.bidHistory.add(newTransaction);
-        System.out.println("Thành công: " + bidder.getEmail() + " đã trả giá " + bidAmount);
+        System.out.println("Thành công: " + bidder.getName() + " (" + bidder.getEmail() + ") đã trả giá " + bidAmount);
         return true;
+    }
+
+    public void finishAuction() {
+        if (this.status == AuctionStatus.RUNNING) {
+            this.status = AuctionStatus.FINISHED;
+            if (bidHistory.isEmpty()) {
+                System.out.println("Phiên đấu giá " + this.auctionId + " đã kết thúc. Không có ai đấu giá.");
+            } 
+            else {
+                BidTransaction lastBid = bidHistory.get(bidHistory.size() - 1);
+                System.out.println("Phiên đấu giá " + this.auctionId + " đã kết thúc. Người thắng: " + 
+                                lastBid.getBidder().getName() + " với giá: " + lastBid.getAmount());
+            }
+        } 
+        else {
+            System.out.println("Chỉ có thể kết thúc phiên đấu giá đang chạy!");
+        }
+    }
+
+    public void displayAuctionDetails() {
+        System.out.println("\n----- THÔNG TIN PHIÊN ĐẤU GIÁ -----");
+        System.out.println("ID: " + auctionId);
+        System.out.println("Sản phẩm: " + item.getName());
+        System.out.println("Người bán: " + seller.getName() + " (" + seller.getEmail() + ")");
+        System.out.println("Giá hiện tại: " + currentPrice);
+        System.out.println("Trạng thái: " + status);
+        System.out.println("Số lần đấu giá: " + bidHistory.size());
+        if (!bidHistory.isEmpty()) {
+            System.out.println("Lịch sử đấu giá:");
+            for (BidTransaction txn : bidHistory) {
+                System.out.println("  - " + txn.getBidder().getName() + ": " + txn.getAmount() + 
+                                 " (lúc " + txn.getTimestamp() + ")");
+            }
+        }
+        System.out.println("----------------------------------\n");
     }
 }

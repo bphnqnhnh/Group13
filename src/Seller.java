@@ -15,4 +15,5 @@ public class Seller extends User {
     public String getItemName() {
         return itemName;
     }
+}
 
