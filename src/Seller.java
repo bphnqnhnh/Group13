@@ -9,3 +9,11 @@ public class Seller extends User {
     public void displayInfo() {
         System.out.println("Tôi là người bán hàng (Seller)");
     }
+<<<<<<< HEAD
+=======
+    public String getItemName() {
+        return itemName;
+    }
+}
+
+>>>>>>> 740bcefb93c5b6107aba1d683dc310de728e674d
