@@ -1,18 +1,11 @@
 public class Bidder extends User {
-    private double bidAmount;
-    private String itemName;
-    public Bidder(String id, String name, String email, String password, String itemName, double bidAmount) {
+    public Bidder(String id, String name, String email, String password) {
         super(id, name, email, password);
-        this.bidAmount = bidAmount;
-        this.itemName = itemName;
     }
-
-    public void performAction() {
-        System.out.println("Người đấu giá:" + getName() + " đang xem sản phẩm " + getItemName() + " và đấu giá: " + bidAmount);
+    public void placeBid(Auction auction, double bidAmount) {
+        System.out.println("Người đấu giá: " + this.name + "đang đặt giá " + bidAmount);
+        auction.placeBid(this, bidAmount);
     }
-    public double getBidAmount() {
-        return bidAmount;
-    }
-    public void String getItemName() {
-        return itemName;
+    public void displayInfo() {
+        System.out.println("Tôi là người đấu giá (Bidder)");
     }

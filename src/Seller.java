@@ -1,18 +1,11 @@
 public class Seller extends User {
-    private double startingPrice;
-    private String itemName;
-    public Seller(String id, String name, String email, String password, String itemName, double startingPrice) {
+    public Seller(String id, String name, String email, String password) {
         super(id, name, email, password);
-        this.startingPrice = startingPrice;
-        this.itemName = itemName;
     }
-    public void performAction() {
-        System.out.println("Người bán:" + getName() + " đang tạo phiên đấu giá cho" + getItemName() + " với giá khởi điểm:" + startingPrice);
+    public Aution createAuction(String auctionId, Item item, double startingPrice) {
+        System.out.println("Người bán hàng: " + this.name + "đang tạo phiên đấu gía mới cho: " + item.getName());
+        return new Auction(auctionId, item, startingPrice, AuctionStatus.OPEN, this);
     }
-    public double getStartingPrice() {
-        return startingPrice;
+    public void displayInfo() {
+        System.out.println("Tôi là người bán hàng (Seller)");
     }
-    public String getItemName() {
-        return itemName;
-    }
-

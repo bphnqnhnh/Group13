@@ -6,11 +6,11 @@ public abstract class User extends Entity {
         this.email = email;
         this.pasword = password;
     }
+    public boolean login(String email, String password) {
+        return this.email.equals(email) && this.password.equals(password);
+    }
     public String getEmail() {
         return email;
     }
-    public String getPassWord() {
-        return password;
-    }
-    public abstract void performAction();
+    public abstract void displayInfo();
 }
