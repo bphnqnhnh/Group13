@@ -3,7 +3,7 @@ public class Admin extends User {
         super(id, name, email, password);
     }
     }
-    public void cancerAuction(AuctionManager manager, String auctionId) {
+    public void cancelAuction(AuctionManager manager, String auctionId) {
         System.out.println("Quản trị viên: " + this.name + "đang xóa phiên đấu giá: " + auctionId);
         manager.removeAuction(auctionId);
     }
