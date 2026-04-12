@@ -7,12 +7,13 @@ public class Bidder extends User implements AuctionObserver {
         super(id, name, email, password);
     }
     public void placeBid(Auction auction, double bidAmount) {
-        System.out.println("Người đấu giá: " + this.name + "đang đặt giá " + bidAmount);
+        System.out.println("Người đấu giá: " + getName() + "đang đặt giá " + bidAmount);
         auction.placeBid(this, bidAmount);
     }
     public void displayInfo() {
         System.out.println("Tôi là người đấu giá (Bidder)");
     }
+<<<<<<< HEAD
     public void update(AuctionEvent event, Auction auction) {
         if (event == AuctionEvent.AUCTION_STARTED) {
             System.out.println("Thông báo cho " + this.getName() + ": Phiên đấu giá '" + auction.getAuctionId() + "' đã bắt đầu!");
@@ -25,3 +26,6 @@ public class Bidder extends User implements AuctionObserver {
         }
     }
 }
+=======
+}
+>>>>>>> 87b4f62db401d6d7fd9f8956a02a58a217ec8fc4

@@ -6,12 +6,13 @@ public class Seller extends User implements AuctionObserver {
         super(id, name, email, password);
     }
     public Auction createAuction(String auctionId, Item item, double startingPrice) {
-        System.out.println("Người bán hàng: " + this.name + "đang tạo phiên đấu gía mới cho: " + item.getName());
+        System.out.println("Người bán hàng: " + getName() + "đang tạo phiên đấu gía mới cho: " + item.getName());
         return new Auction(auctionId, item, startingPrice, AuctionStatus.OPEN, this);
     }
     public void displayInfo() {
         System.out.println("Tôi là người bán hàng (Seller)");
     }
+<<<<<<< HEAD
     public void update(AuctionEvent event, Auction auction) {
         if (event == AuctionEvent.AUCTION_STARTED) {
             System.out.println("Thông báo cho người bán " + this.getName() + ": Phiên đấu giá '" + auction.getAuctionId() + "'của bạn đã bắt đầu!");
@@ -24,3 +25,6 @@ public class Seller extends User implements AuctionObserver {
         }
     }
 }
+=======
+}
+>>>>>>> 87b4f62db401d6d7fd9f8956a02a58a217ec8fc4
