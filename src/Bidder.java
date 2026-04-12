@@ -1,4 +1,8 @@
-public class Bidder extends User {
+import AuctionEvent;
+import Auction;
+import AuctionObserver;
+
+public class Bidder extends User implements AuctionObserver {
     public Bidder(String id, String name, String email, String password) {
         super(id, name, email, password);
     }
@@ -9,3 +13,15 @@ public class Bidder extends User {
     public void displayInfo() {
         System.out.println("Tôi là người đấu giá (Bidder)");
     }
+    public void update(AuctionEvent event, Auction auction) {
+        if (event == AuctionEvent.AUCTION_STARTED) {
+            System.out.println("Thông báo cho " + this.getName() + ": Phiên đấu giá '" + auction.getAuctionId() + "' đã bắt đầu!");
+        }
+        else if (event == AuctionEvent.BID_PLACED) {
+            System.out.println("Thông báo cho " + this.getName() + ": Có người đặt giá mới trong phiên đấu giá '" + auction.AuctionId() + "', giá hiện tại: " + auction.getCurrentPrice());
+        }
+        else ìf (event == AuctionEvent.AUCTION_FINISHED) {
+            System.out.println("Thông báo cho " + this.getName() + ": phiên đấu giá '" + auction.AuctionId() + "' đã kết thúc.");
+        }
+    }
+}
