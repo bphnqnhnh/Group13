@@ -1,7 +1,9 @@
+package com.group13.group13_btl.models;
+
 public abstract class Item extends Entity {
     private double startingPrice;
 
-    public Item (String id, String name, double startingPrice) {
+    public Item(String id, String name, double startingPrice) {
         super(id, name);
         this.startingPrice = startingPrice;
     }

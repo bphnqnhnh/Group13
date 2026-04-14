@@ -1,3 +1,7 @@
+package com.group13.group13_btl.models;
+
+import com.group13.group13_btl.services.AuctionManager;
+
 public class Admin extends User {
     public Admin(String id, String name, String email, String password) {
         super(id, name, email, password);

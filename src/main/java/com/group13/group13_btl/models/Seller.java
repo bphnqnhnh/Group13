@@ -1,3 +1,6 @@
+package com.group13.group13_btl.models;
+
+import com.group13.group13_btl.services.AuctionObserver;
 
 public class Seller extends User implements AuctionObserver {
     public Seller(String id, String name, String email, String password) {

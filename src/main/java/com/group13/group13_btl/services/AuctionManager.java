@@ -1,3 +1,7 @@
+package com.group13.group13_btl.services;
+
+import com.group13.group13_btl.models.Auction;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

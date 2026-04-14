@@ -1,3 +1,5 @@
+package com.group13.group13_btl.models;
+
 public class Electronics extends Item{
     private String brand;
     private int warrantyMonths;

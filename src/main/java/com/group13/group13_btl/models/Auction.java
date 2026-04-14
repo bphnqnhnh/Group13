@@ -1,3 +1,7 @@
+package com.group13.group13_btl.models;
+
+import com.group13.group13_btl.services.AuctionObserver;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

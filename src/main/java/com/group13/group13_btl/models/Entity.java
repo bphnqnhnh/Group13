@@ -1,3 +1,5 @@
+package com.group13.group13_btl.models;
+
 public abstract class Entity {
     private String id;
     private String name;

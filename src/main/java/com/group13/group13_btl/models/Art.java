@@ -1,3 +1,5 @@
+package com.group13.group13_btl.models;
+
 public class Art extends Item{
     private String artistName;
     private int creationYear;

@@ -1,3 +1,5 @@
+package com.group13.group13_btl.models;
+
 public abstract class User extends Entity {
     private String email;
     private String password;

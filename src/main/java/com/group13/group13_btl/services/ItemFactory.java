@@ -1,4 +1,9 @@
-import java.util.Scanner;
+package com.group13.group13_btl.services;
+
+import com.group13.group13_btl.models.Art;
+import com.group13.group13_btl.models.Electronics;
+import com.group13.group13_btl.models.Item;
+import com.group13.group13_btl.models.Vehicle;
 
 public class ItemFactory {
     public static Item createElectronics(String id, String name, String brand, int warrantyMonths, double startingPrice) {

@@ -1,3 +1,5 @@
+package com.group13.group13_btl.models;
+
 import java.time.LocalDateTime;
 
 public class BidTransaction {
