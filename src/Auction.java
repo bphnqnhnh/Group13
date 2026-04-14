@@ -27,29 +27,14 @@ public class Auction {
         }
     }
 
-    public String getAuctionId() {
-        return auctionId;
-    }
+    //Getter
+    public String getAuctionId() { return auctionId; }
+    public Item getItem() { return item; }
+    public double getCurrentPrice() { return currentPrice; }
+    public AuctionStatus getStatus() { return status; }
+    public List<BidTransaction> getBidHistory() { return bidHistory; }
+    public Seller getSeller() { return seller; }
 
-    public Item getItem() {
-        return item;
-    }
-
-    public double getCurrentPrice() {
-        return currentPrice;
-    }
-
-    public AuctionStatus getStatus() {
-        return status;
-    }
-
-    public List<BidTransaction> getBidHistory() {
-        return bidHistory;
-    }
-
-    public Seller getSeller() {
-        return seller;
-    }
     public List<AuctionObserver> observers() { return observers;}
     public void addObserver(AuctionObserver observer) {
         observers.add(observer);

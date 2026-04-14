@@ -7,6 +7,7 @@ public class Seller extends User implements AuctionObserver {
         System.out.println("Người bán hàng: " + getName() + "đang tạo phiên đấu gía mới cho: " + item.getName());
         return new Auction(auctionId, item, currentPrice, AuctionStatus.OPEN, this, event);
     }
+
     public void displayInfo() {
         System.out.println("Tôi là người bán hàng (Seller)");
     }
