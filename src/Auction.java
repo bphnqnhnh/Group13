@@ -2,8 +2,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import AuctionObserver;
-import AuctionEvent;
+
 public class Auction {
     private String auctionId;
     private Item item;
@@ -12,15 +11,17 @@ public class Auction {
     private List<BidTransaction> bidHistory;
     private Seller seller;
     private List<AuctionObserver> observers;
+    private AuctionEvent event;
 
-    public Auction(String auctionId, Item item, double currentPrice, AuctionStatus status, Seller seller) {
+    public Auction(String auctionId, Item item, double currentPrice, AuctionStatus status, Seller seller, AuctionEvent event) {
         this.auctionId = auctionId;
         this.item = item;
         this.currentPrice = currentPrice;
         this.status = status;
         this.seller = seller;
         this.bidHistory = new ArrayList<>();
-        this.observers = observers;
+        this.observers = new ArrayList<>();
+        this.event = event;
         if (seller instanceof AuctionObserver) {
             addObserver((AuctionObserver) seller);
         }
@@ -49,6 +50,7 @@ public class Auction {
     public Seller getSeller() {
         return seller;
     }
+    public List<AuctionObserver> observers() { return observers;}
     public void addObserver(AuctionObserver observer) {
         observers.add(observer);
     }
@@ -57,7 +59,7 @@ public class Auction {
     }
     public void notifyObserver(AuctionEvent event) {
         for (AuctionObserver observer : observers) {
-            observers.update(event, this);
+            observer.update(event, this);
         }
     }
 
