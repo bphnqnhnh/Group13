@@ -46,7 +46,7 @@ public class AuctionManager {
 
     public void displayAllAuctions() {
         if (activeAuctions.isEmpty()) {
-            System.out.println("hiện không có phiên đấu giá nào");
+            System.out.println("Hiện không có phiên đấu giá nào");
             return;
         }
         System.out.println("\n===== DANH SÁCH CÁC PHIÊN ĐẤU GIÁ =====");

@@ -11,9 +11,8 @@ public class Auction {
     private List<BidTransaction> bidHistory;
     private Seller seller;
     private List<AuctionObserver> observers;
-    private AuctionEvent event;
 
-    public Auction(String auctionId, Item item, double currentPrice, AuctionStatus status, Seller seller, AuctionEvent event) {
+    public Auction(String auctionId, Item item, double currentPrice, AuctionStatus status, Seller seller) {
         this.auctionId = auctionId;
         this.item = item;
         this.currentPrice = currentPrice;
@@ -21,27 +20,30 @@ public class Auction {
         this.seller = seller;
         this.bidHistory = new ArrayList<>();
         this.observers = new ArrayList<>();
-        this.event = event;
+
         if (seller instanceof AuctionObserver) {
             addObserver((AuctionObserver) seller);
         }
     }
 
-    //Getter
+    // Getter
     public String getAuctionId() { return auctionId; }
     public Item getItem() { return item; }
     public double getCurrentPrice() { return currentPrice; }
     public AuctionStatus getStatus() { return status; }
     public List<BidTransaction> getBidHistory() { return bidHistory; }
     public Seller getSeller() { return seller; }
-
     public List<AuctionObserver> observers() { return observers;}
+    
+    // Observer Pattern
     public void addObserver(AuctionObserver observer) {
         observers.add(observer);
     }
+
     public void removeObserver(AuctionObserver observer) {
         observers.remove(observer);
     }
+
     public void notifyObserver(AuctionEvent event) {
         for (AuctionObserver observer : observers) {
             observer.update(event, this);
@@ -49,18 +51,17 @@ public class Auction {
     }
 
 
-    public void startAuction() {
+    public synchronized void startAuction() {
         if (this.status == AuctionStatus.OPEN) {
             this.status = AuctionStatus.RUNNING;
             System.out.println("Phiên đấu giá " + this.auctionId + " cho sản phẩm '" + item.getName() + "' đã chính thức bắt đầu!");
             notifyObserver(AuctionEvent.AUCTION_STARTED);
-        }
-        else {
+        } else {
             System.out.println("Thất bại: Không thể bắt đầu vì phiên đấu giá đang ở trạng thái " + this.status);
         }
     }
 
-    public boolean placeBid(Bidder bidder, double bidAmount) {
+    public synchronized boolean placeBid(Bidder bidder, double bidAmount) {
         if (this.status != AuctionStatus.RUNNING) {
             System.out.println("Thất bại: Phiên đấu giá này không mở!");
             return false;
@@ -84,20 +85,18 @@ public class Auction {
         return true;
     }
 
-    public void finishAuction() {
+    public synchronized void finishAuction() {
         if (this.status == AuctionStatus.RUNNING) {
             this.status = AuctionStatus.FINISHED;
             if (bidHistory.isEmpty()) {
                 System.out.println("Phiên đấu giá " + this.auctionId + " đã kết thúc. Không có ai đấu giá.");
-            } 
-            else {
+            } else {
                 BidTransaction lastBid = bidHistory.get(bidHistory.size() - 1);
                 System.out.println("Phiên đấu giá " + this.auctionId + " đã kết thúc. Người thắng: " + 
                                 lastBid.getBidder().getName() + " với giá: " + lastBid.getAmount());
             }
             notifyObserver(AuctionEvent.AUCTION_FINISHED);
-        } 
-        else {
+        } else {
             System.out.println("Chỉ có thể kết thúc phiên đấu giá đang chạy!");
         }
     }

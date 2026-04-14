@@ -5,7 +5,7 @@ public class Seller extends User implements AuctionObserver {
     }
     public Auction createAuction(String auctionId, Item item, double currentPrice, AuctionStatus status, AuctionEvent event) {
         System.out.println("Người bán hàng: " + getName() + "đang tạo phiên đấu gía mới cho: " + item.getName());
-        return new Auction(auctionId, item, currentPrice, AuctionStatus.OPEN, this, event);
+        return new Auction(auctionId, item, currentPrice, AuctionStatus.OPEN, this);
     }
 
     public void displayInfo() {
